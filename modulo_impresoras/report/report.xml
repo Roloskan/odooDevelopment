@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="report_printer"
+        string="Reporte mensual de consumo de impresoras"
+        model="doff.printer"
+        report_type="qweb-pdf"
+        name="modulo_impresoras.report_printer_months"
+        file="modulo_impresoras.report_printer_months"/>
+</odoo>

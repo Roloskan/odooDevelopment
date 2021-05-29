@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+printer_access_rights_printer_admin, doff.printer,model_doff_printer,printer_access_rights.group_manager,1,1,1,1
+printer_access_rights_printer_user, doff.printer,model_doff_printer,printer_access_rights.group_user,1,0,0,0
+
+printer_access_rights_device_admin, doff.device,model_doff_device,printer_access_rights.group_manager,1,1,1,1
+printer_access_rights_device_user, doff.device,model_doff_device,printer_access_rights.group_user,1,0,0,0
+
+printer_access_rights_department_admin, doff.department,model_doff_department,printer_access_rights.group_manager,1,1,1,1
+printer_access_rights_department_user, doff.department,model_doff_department,printer_access_rights.group_user,1,0,0,0

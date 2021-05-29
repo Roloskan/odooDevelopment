@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<menuitem id="raw_impresoras_menu1" 
+		name="Impresoras" 
+		sequence="1" 
+		web_icon=""/>
+
+			<!--Consumo de impresoras-->
+			<menuitem id="bale_menu_category2" 
+				name="Consumo de impresoras" 
+				sequence="1" 
+				parent="raw_impresoras_menu1"
+				groups= "group_manager,group_user"
+				action="bale_income_menu_action"/>
+
+			<menuitem id="bale_menu_category3" 
+			name="Gestionar impresoras" 
+			sequence="1" 
+			parent="raw_impresoras_menu1"
+			groups= "group_manager,group_user"
+			action="bale_income_menu_action2"/>
+			
+			<menuitem id="bale_menu_category4" 
+				name="Gestionar departamentos" 
+				sequence="1" 
+				parent="raw_impresoras_menu1"
+				groups= "group_manager,group_user"
+				action="bale_income_menu_action3"/>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="doff_department_form_view" model="ir.ui.view">
+        <field name="name">doff_department_form_view</field>
+        <field name="model">doff.department</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="department_name"/>
+                        </group>
+                        <group>  
+                            <field name="department_location"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>   
+
+    <record id="doff_deparment_tree_view" model="ir.ui.view">
+		<field name="name">Gestionar departamentos</field>
+		<field name="model">doff.department</field>
+		<field name="arch" type="xml">
+			<tree>
+                <field name="department_name"/>
+                <field name="department_location"/>
+			</tree>
+		</field>		
+	</record>
+
+    <record id="bale_income_menu_action3" model="ir.actions.act_window">
+		<field name="name">Gestionar departamentos</field>
+		<field name="res_model">doff.department</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+</odoo>

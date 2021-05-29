@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="doff_device_form_view" model="ir.ui.view">
+        <field name="name">doff_device_form_view</field>
+        <field name="model">doff.device</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="printer_brand"/>
+                            <field name="printer_model"/>
+                            <field name="printer_series"/>
+                        </group>
+                        <group>  
+                            <field name="paper_size"/>
+                            <field name="paper_type"/>
+                            <field name="users_numbers"/>
+                            <field name="department_name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>   
+
+    <record id="doff_device_tree_view" model="ir.ui.view">
+		<field name="name">Gestionar impresoras</field>
+		<field name="model">doff.device</field>
+		<field name="arch" type="xml">
+			<tree>
+                <field name="partner_id"/>
+				<field name="printer_brand"/>
+                <field name="printer_series"/>
+                <field name="department_name"/>
+                <field name="paper_size"/>
+                <field name="paper_type"/>
+                <field name="users_numbers"/>
+                <field name="printer_model"/>
+			</tree>
+		</field>		
+	</record>
+
+    <record id="bale_income_menu_action2" model="ir.actions.act_window">
+		<field name="name">Gestionar impresoras</field>
+		<field name="res_model">doff.device</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+</odoo>
