@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<menuitem id="raw_higiene_seguridad" 
+		name="Inventario" 
+		sequence="1" 
+		web_icon=""/>
+
+			<!--Consumo de impresoras-->
+			<menuitem id="bale_menu_higiene_seguridad_hs" 
+				name="Higiene y seguridad" 
+				sequence="1" 
+				parent="raw_higiene_seguridad"
+				action="bale_income_menu_action"/>
+</odoo>

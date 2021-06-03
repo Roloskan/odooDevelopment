@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="doff_higiene_seguridad_form_view" model="ir.ui.view">
+        <field name="name">doff_higiene_seguridad_form_view</field>
+        <field name="model">doff.higiene.seguridad</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button 
+                        name="btn_borrador" 
+                        class="oe_highlight" 
+                        type="object" 
+                        string="Volver a borrador" 
+                        state="Borrador"
+                        attrs="{'invisible': [('state','in',['Borrador','Aprobado'])]}"
+                    />
+                    <button 
+                        name="btn_transito" 
+                        class="oe_highlight" 
+                        type="object" 
+                        string="Transito" 
+                        state="Transito"
+                        attrs="{'invisible': [('state','in',['Transito','Aprobado'])]}"
+                    />
+                    <button 
+                        name="btn_aprobado" 
+                        class="oe_highlight" 
+                        type="object" 
+                        string="Aprobado" 
+                        state="Aprobado"
+                        attrs="{'invisible': [('state','in',['Aprobado','Borrador'])]}"
+                    />
+                    <field 
+                        name="state" 
+                        widget="statusbar" 
+                        statusbar_visible="Borrador,Transito,Aprobado" 
+                        statusbar_colors='{
+                                            "Borrador":"green",
+                                            "Transito":"yellow",
+                                            "Aprobado":"blue
+                                            }'
+                    />
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="registration_date" readonly="1"/>    
+                            <field 
+                                name="type_of_operation" 
+                                required="1" 
+                                attrs="{'readonly': [('state','!=','Borrador')]}"
+                            />
+                            <field 
+                                name="storage" 
+                                required="1" 
+                                options="{'no_quick_create': True, 'no_create_edit': True}"
+                                attrs="{'invisible': [('type_of_operation','in',['Entrada', False])],
+                                        'readonly': [('state','!=','Borrador')]}"
+                            />
+                            <field 
+                                name="location" 
+                                required="1"
+                                options="{'no_quick_create': True, 'no_create_edit': True}" 
+                                domain="[('location_id','=',stock_id)]"
+                                attrs="{'invisible':[('type_of_operation','in',['Entrada', False])],
+                                        'readonly': [('state','!=','Borrador')]}"
+                            />       
+                        </group>
+                        <group>  
+                            <field name="responsable_id" readonly="1"/>
+                            <field 
+                                name="stock_id"
+                                invisible="1"
+                                force_save="1"
+                            />         
+                            <field 
+                                name="storage_destino"
+                                required="1" 
+                                options="{'no_quick_create': True, 'no_create_edit': True}"
+                                attrs="{'invisible': [('type_of_operation','in',['Salida', False])],
+                                        'readonly': [('state','!=','Borrador')]}" 
+                            />
+                            <field 
+                                name="location_destino"
+                                required="1" 
+                                options="{'no_quick_create': True, 'no_create_edit': True}"
+                                attrs="{'invisible': [('type_of_operation','in',['Salida', False])],
+                                        'readonly': [('state','!=','Borrador')]}" 
+                                domain="[('location_id','=',stock_id)]"
+                            />
+                        </group>
+                    </group>
+                    <notebook attrs="{'readonly': [('state','!=','Borrador')]}">
+                        <page string="Page">    
+                            <field name="doff_higiene_seguridad_detail_id" attrs="{'readonly': [('state','!=','Borrador')]}">
+                                <tree editable="bottom">
+                                    <field 
+                                        name="product_higiene_seguridad" 
+                                        required="1" 
+                                        options="{'no_quick_create': True, 'no_create_edit' : True}"
+                                        attrs="{'readonly': [('parent.state','!=','Borrador')]}"
+                                    />
+                                    <field 
+                                        name="qty_available" 
+                                        required="1"
+                                        attrs="{'readony': [('parent.state','=','Borrador')]}"
+                                    />
+                                    <field 
+                                        name="qty" 
+                                        required="1"
+                                        attrs="{'readonly': [('parent.state','!=','Borrador')]}"
+                                        />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>    
+
+    <record id="doff_printer_tree_view" model="ir.ui.view">
+		<field name="name">Higiene y seguridad</field>
+		<field name="model">doff.higiene.seguridad</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="registration_date"/>
+                <field name="responsable_id"/>
+			</tree>
+		</field>		
+	</record>
+
+    <record id="bale_income_menu_action" model="ir.actions.act_window">
+		<field name="name">Higiene y seguridad</field>
+		<field name="res_model">doff.higiene.seguridad</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+    <record id="materia_prima_inherit" model="ir.ui.view">
+        <field name="name">materia_prima_inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <div name="options" position="inside">
+                <div>
+                    <field name="product_higiene_seguridad_check"/>
+                    <label for="product_higiene_seguridad_check">Higiene y seguridad</label>
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>

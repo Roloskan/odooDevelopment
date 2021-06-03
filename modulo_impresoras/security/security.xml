@@ -6,12 +6,12 @@
       <field name="sequence">4</field>
     </record>
  
-   <record id="group_user" model="res.groups">
+    <record id="group_user_printer" model="res.groups">
      <field name="name">Acceso usuario.</field>
      <field name="category_id" ref="printer_access_rights"/>
     </record>
  
-    <record id="group_manager" model="res.groups">
+    <record id="group_manager_printer" model="res.groups">
       <field name="name">Acceso admin.</field>
       <field name="category_id" ref="printer_access_rights"/>
     </record>
