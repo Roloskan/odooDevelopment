@@ -14,9 +14,8 @@
     'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
     'depends' : ['base'],
     'data': [
-        'wizard/create_printer_report.xml',
-        'report/report_printer.xml',
-        'report/report.xml',
+        'wizard/printer_report_between_two_dates.xml',
+        'report/report_printer_by_month.xml',
         'security/security.xml',
         'views/printer.xml',
         'views/device.xml',

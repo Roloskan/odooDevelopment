@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_printer_anual">
+    <template id="report_printer_months">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
@@ -110,11 +110,12 @@
                     
                         <body>
                             <div class="invoice-box">
-
+                                <h1 style="text-align:center">Reporte consumo de impresoras</h1>
+                                <br/><br/><br/>
                                 <table>
                                     <tr>
                                         <td style="text-align:left">
-                                            <p>Fecha de la factura: </p>
+                                            <p>Fecha de ingreseso: </p>
                                             <p>Factura #: </p>
                                             <p>Fecha de corte: </p>
                                         </td>
@@ -138,18 +139,6 @@
 
                                 </table>
                                 <table>
-                                    <tr class="information">
-                                        <td colspan="2">
-                                            <table>
-                                                <tr>
-                                                    <td style="text-align:left">
-                                                        Reporte mensual de impresiones
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                
                                     <tr class="heading">
                                         <td>Tipo de impresion</td>
                                         <td></td>
@@ -160,13 +149,13 @@
                     
 
 
-                                    <t t-set="test_variable" t-value="0"/>
-                                    <p t-foreach="o.doff_printer_detail_ids" t-as="i"> 
-                                        <t t-set="test_variable" t-value="test_variable+i.total_bw"/> 
+                                    <t t-set="total_blanco_negro" t-value="0"/>
+                                    <p t-foreach="o.doff_printer_detail_id" t-as="i"> 
+                                        <t t-set="total_blanco_negro" t-value="total_blanco_negro+i.total_bw"/> 
                                     </p> 
-                                    <t t-set="test_variable2" t-value="0"/>
-                                    <p t-foreach="o.doff_printer_detail_ids" t-as="i"> 
-                                        <t t-set="test_variable2" t-value="test_variable2+i.total_c"/> 
+                                    <t t-set="total_color" t-value="0"/>
+                                    <p t-foreach="o.doff_printer_detail_id" t-as="i"> 
+                                        <t t-set="total_color" t-value="total_color+i.total_c"/> 
                                     </p> 
                                 
                                     <tr class="details">
@@ -174,14 +163,14 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td style="text-align:center"><p t-esc="test_variable"/></td>
+                                        <td style="text-align:center"><p t-esc="total_blanco_negro"/></td>
                                     </tr>
                                     <tr class="details">
                                         <td>Blanco y negro</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td style="text-align:center"><p t-esc="test_variable2"/></td>
+                                        <td style="text-align:center"><p t-esc="total_color"/></td>
                                     </tr>                    
                                     <tr class="heading">
                                         <td style="text-align:left">Modelo</td>
@@ -190,7 +179,7 @@
                                         <td style="text-align:center">Color</td>
                                         <td style="text-align:center">Blanco y negro</td>
                                     </tr>
-                                    <t t-foreach="o.doff_printer_detail_ids" t-as="l">
+                                    <t t-foreach="o.doff_printer_detail_id" t-as="l">
                                         <tr>
                                             <td><p t-field="l.printer_model"/></td>
                                             <td style="text-align:center"><p t-field="l.printer_series"/></td>

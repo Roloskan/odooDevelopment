@@ -2,8 +2,9 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 
+from re import A
 from odoo import models, fields, api
-from odoo.exceptions import Warning
+from odoo.exceptions import AccessDenied, Warning
 
 
 #Encabezado
@@ -27,10 +28,18 @@ class higieneSeguridad(models.Model):
         for rec in self:
             rec.write({'state': 'Aprobado'})
 
-    @api.onchange('type_of_operation')
-    def onchange_type_of_operation(self):
-        if self.type_of_operation:
-            print("gola")
+    #@api.onchange('type_of_operation')
+    #def onchange_type_of_operation(self):
+    #    for rec in self:
+    #        if rec.type_of_operation == "Entrada":
+    #            rec.storage = False
+    #            rec.storage_destino = True
+    #        elif rec.type_of_operation == "Interno":
+    #            rec.storage = True
+    #            rec.storage_destino = True
+    #        else:
+    #            rec.storage = True
+    #            rec.storage_destino = False
 
     #Evento para obtener el stock_id y location_id segun el warehouse de origen.
     @api.onchange('storage')
@@ -48,9 +57,11 @@ class higieneSeguridad(models.Model):
 
     registration_date = fields.Date("Fecha de registro", default=fields.Datetime.now)
     responsable_id = fields.Many2one("res.users","Responsable", default=lambda self: self.env.uid)
-    storage = fields.Many2one("stock.warehouse", string="Almacen origen", default= lambda self: self.env.uid)
+    suplier = fields.Many2one("res.partner", "Proveedor", default=lambda self: self.env.uid)
+    stock_picking = fields.Many2one("stock.picking","Movimiento", default=lambda self: self.env.uid)
+    storage = fields.Many2one("stock.warehouse", string="Almacen origen", default=lambda rec: rec.env.uid)
     location = fields.Many2one("stock.location", string="Ubicación origen")
-    storage_destino = fields.Many2one("stock.warehouse", string="Almacen destino", default= lambda self: self.env.uid)
+    storage_destino = fields.Many2one("stock.warehouse", string="Almacen destino", default=lambda rec: rec.env.uid)
     location_destino = fields.Many2one("stock.location", string="Ubicación destino")
     type_of_operation = fields.Selection([('Entrada','Entrada'), 
                                           ('Interno','Interno'), 
@@ -65,6 +76,8 @@ class higieneSeguridad(models.Model):
                               'Estado', 
                               default="Borrador"
                             )
+    comments = fields.Char("Observaciones")
+
     
     doff_higiene_seguridad_detail_id = fields.One2many("doff.higiene.seguridad.detail", "doff_higiene_seguridad_id", "doff_higiene_seguridad_detail_id")
 
@@ -100,7 +113,6 @@ class higieneSeguridadDetail(models.Model):
     product_higiene_seguridad = fields.Many2one("product.product","Productos", domain="[('product_higiene_seguridad_check','=',True)]")
     qty_available = fields.Integer(string="Cantidad disponible",store=True,readonly=True)
     qty = fields.Integer(string="Cantidad")
-
     doff_higiene_seguridad_id = fields.Many2one("doff.higiene.seguridad","doff_higiene_seguridad_id")
 
 #Herencia

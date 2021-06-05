@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <report
+        id="report_higiene_seguridad_id"
+        string="Reporte de movimiento de inventario"
+        model="doff.higiene.seguridad"
+        report_type="qweb-pdf"
+        name="diadema_higiene_seguridad.report_higiene_seguridad_doff"
+        file="diadema_higiene_seguridad.report_higiene_seguridad_doff"/>
 
 	<menuitem id="raw_higiene_seguridad" 
 		name="Inventario" 

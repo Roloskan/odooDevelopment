@@ -51,6 +51,12 @@
                                 attrs="{'readonly': [('state','!=','Borrador')]}"
                             />
                             <field 
+                                name="stock_picking" 
+                                required="1" 
+                                attrs="{'invisible': [('type_of_operation','in',False)],
+                                'readonly': [('state','!=','Borrador')]}"
+                            />
+                            <field 
                                 name="storage" 
                                 required="1" 
                                 options="{'no_quick_create': True, 'no_create_edit': True}"
@@ -73,6 +79,12 @@
                                 invisible="1"
                                 force_save="1"
                             />         
+                            <field 
+                                name="suplier"
+                                required="1"
+                                options="{'no_quick_create': True, 'no_create_edit': True}"
+                                attrs="{'readonly': [('state','!=','Borrador')]}"
+                            />
                             <field 
                                 name="storage_destino"
                                 required="1" 
@@ -104,6 +116,7 @@
                                         name="qty_available" 
                                         required="1"
                                         attrs="{'readony': [('parent.state','=','Borrador')]}"
+                                        force_save="1"
                                     />
                                     <field 
                                         name="qty" 
@@ -114,6 +127,13 @@
                             </field>
                         </page>
                     </notebook>
+                    <group>  
+                        <field 
+                            name="comments"
+                            attrs="{'invisible': [('type_of_operation','in',['Salida', False])],
+                                    'readonly': [('state','!=','Borrador')]}"
+                        />
+                    </group>
                 </sheet>
             </form>
         </field>

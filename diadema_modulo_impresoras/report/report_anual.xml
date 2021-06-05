@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_printer_anual">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <head>
+                            <meta charset="utf-8" />
+                            <title>Reporte mensual</title>
+                    
+                            <style>
+                                .invoice-box {
+                                    max-width: 900px;
+                                    margin: auto;
+                                    padding: 30px;
+                                    border: 1px solid #eee;
+                                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+                                    font-size: 15px;
+                                    line-height: 20px;
+                                    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                    color: #555;
+                                }
+                    
+                                .invoice-box table {
+                                    width: 100%;
+                                    line-height: inherit;
+                                    text-align: left;
+                                }
+                    
+                                .invoice-box table td {
+                                    vertical-align: top;
+                                }
+                    
+                                .invoice-box table tr td:nth-child(2) {
+                                    text-align: right;
+                                }
+                    
+                                .invoice-box table tr.top table td {
+                                    padding-bottom: 30px;
+                                }
+                    
+                                .invoice-box table tr.top table td.title {
+                                    font-size: 45px;
+                                    line-height: 45px;
+                                    color: #333;
+                                }
+                    
+                                .invoice-box table tr.information table td {
+                                    padding-bottom: 40px;
+                                }
+                    
+                                .invoice-box table tr.heading td {
+                                    background: #eee;
+                                    border-bottom: 1px solid #ddd;
+                                    font-weight: bold;
+                                }
+                    
+                                .invoice-box table tr.details td {
+                                    padding-bottom: 10px;
+                                }
+                    
+                                .invoice-box table tr.item td {
+                                    border-bottom: 1px solid #eee;
+                                }
+                    
+                                .invoice-box table tr.item.last td {
+                                    border-bottom: none;
+                                }
+                    
+                                .invoice-box table tr.total td:nth-child(2) {
+                                    border-top: 2px solid #eee;
+                                    font-weight: bold;
+                                }
+                    
+                                @media only screen and (max-width: 600px) {
+                                    .invoice-box table tr.top table td {
+                                        width: 100%;
+                                        display: block;
+                                        text-align: center;
+                                    }
+                    
+                                    .invoice-box table tr.information table td {
+                                        width: 100%;
+                                        display: block;
+                                        text-align: center;
+                                    }
+                                }
+                    
+                                /** RTL **/
+                                .invoice-box.rtl {
+                                    direction: rtl;
+                                    font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                }
+                    
+                                .invoice-box.rtl table {
+                                    text-align: right;
+                                }
+                    
+                                .invoice-box.rtl table tr td:nth-child(2) {
+                                    text-align: left;
+                                }
+
+                                .center {
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                  }
+                            </style>
+                        </head>
+                    
+                        <body>
+                            <div class="invoice-box">
+
+                                <table>
+                                    <tr>
+                                        <td style="text-align:left">
+                                            <p>Fecha de la factura: </p>
+                                            <p>Factura #: </p>
+                                            <p>Fecha de corte: </p>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <strong><p t-field="o.registration_date"/></strong>
+                                            <strong><p t-field="o.invoice_number"/></strong>
+                                            <strong><p t-field="o.cutoff_date"/></strong>                                        
+                                        </td>
+                                        <td></td>
+                                        <td style="text-align:left">
+                                            <p>Proveedor: </p>
+                                            <p>Divisa: </p>
+                                            <p>Total: </p>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <strong><p t-field="o.partner_id"/></strong>
+                                            <strong><p t-field="o.currency_id" invisible="1"/></strong>
+                                            <strong><span t-field="o.total_bill"/></strong>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                                <table>
+                                    <tr class="information">
+                                        <td colspan="2">
+                                            <table>
+                                                <tr>
+                                                    <td style="text-align:left">
+                                                        Reporte mensual de impresiones
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                
+                                    <tr class="heading">
+                                        <td>Tipo de impresion</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td style="text-align:center">Cantidad total</td>
+                                    </tr>
+                    
+
+
+                                    <t t-set="test_variable" t-value="0"/>
+                                    <p t-foreach="o.doff_printer_detail_id" t-as="i"> 
+                                        <t t-set="test_variable" t-value="test_variable+i.total_bw"/> 
+                                    </p> 
+                                    <t t-set="test_variable2" t-value="0"/>
+                                    <p t-foreach="o.doff_printer_detail_id" t-as="i"> 
+                                        <t t-set="test_variable2" t-value="test_variable2+i.total_c"/> 
+                                    </p> 
+                                
+                                    <tr class="details">
+                                        <td>Color</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td style="text-align:center"><p t-esc="test_variable"/></td>
+                                    </tr>
+                                    <tr class="details">
+                                        <td>Blanco y negro</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td style="text-align:center"><p t-esc="test_variable2"/></td>
+                                    </tr>                    
+                                    <tr class="heading">
+                                        <td style="text-align:left">Modelo</td>
+                                        <td style="text-align:center">Serie</td>
+                                        <td style="text-align:center">Ubicación</td>
+                                        <td style="text-align:center">Color</td>
+                                        <td style="text-align:center">Blanco y negro</td>
+                                    </tr>
+                                    <t t-foreach="o.doff_printer_detail_id" t-as="l">
+                                        <tr>
+                                            <td><p t-field="l.printer_model"/></td>
+                                            <td style="text-align:center"><p t-field="l.printer_series"/></td>
+                                            <td style="text-align:center"><p t-field="l.department_name"/></td>
+                                            <td style="text-align:center"><p t-field="l.total_c"/></td>
+                                            <td style="text-align:center"><p t-field="l.total_bw"/></td>
+                                        </tr>
+                                    </t>  
+                                </table>
+                            </div>
+                        </body>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

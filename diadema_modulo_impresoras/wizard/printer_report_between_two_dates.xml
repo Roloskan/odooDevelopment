@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="printer_report_between_two_dates_view" model="ir.ui.view">
+        <field name="name">printer_report_between_two_dates</field>
+        <field name="model">doff.printer.report.between.two.dates</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="get_data" string="Generar Reporte" type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="cutoff_date1" required="1"/>
+                        </group>
+                        <group>
+                            <field name="cutoff_date2" required="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Reporte de impresiones a color" readonly="1"> 
+                            <field name="doff_printer_report_between_two_dates_detail_id" readonly="1">
+                                <tree>
+                                    <field 
+                                        name="printer_series"
+                                    />
+                                    <field 
+                                        name="printer_model"
+                                    />
+                                    <field 
+                                        name="department_name"
+                                    />
+                                    <field 
+                                        name="users_numbers"
+                                    />
+                                    <field 
+                                        name="EneroC"
+                                        sum="Total Enero"
+                                    />
+                                    <field 
+                                        name="FebreroC"
+                                        sum="Total Febrero"
+                                    />
+                                    <field 
+                                        name="MarzoC"
+                                        sum="Total Diciembre"
+                                    />
+                                    <field 
+                                        name="AbrilC"
+                                        sum="Total Abril"
+                                    />
+                                    <field 
+                                        name="MayoC"
+                                        sum="Total Mayo"
+                                    />
+                                    <field 
+                                        name="JunioC"
+                                        sum="Total Junio"
+                                    />
+                                    <field 
+                                        name="JulioC"
+                                        sum="Total Julio"
+                                    />
+                                    <field 
+                                        name="AgostoC"
+                                        sum="Total Agosto"
+                                    />
+                                    <field 
+                                        name="SeptiembreC"
+                                        sum="Total Septiembre"
+                                    />
+                                    <field 
+                                        name="OctubreC"
+                                        sum="Total Octubre"
+                                    />
+                                    <field 
+                                        name="NoviembreC"
+                                        sum="Total Noviembre"
+                                    />
+                                    <field 
+                                        name="DiciembreC"
+                                        sum="Total Diciembre"
+                                    />
+                                    <field 
+                                        name="gran_total_color"
+                                        sum="Total Anual"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>    
+
+    <record id="bale_income_menu_action4" model="ir.actions.act_window">
+		<field name="name">Reporte consumo de impresoras por fechas</field>
+		<field name="res_model">doff.printer.report.between.two.dates</field>
+		<field name="view_mode">form</field>
+	</record>
+</odoo>

@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="report_printer_months">
+    <template id="report_higiene_seguridad_doff">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
                         <head>
                             <meta charset="utf-8" />
-                            <title>Reporte mensual</title>
-                    
+                            <title>Reporte movimiento de inventario: Higiene y Seguridad</title>
                             <style>
                                 .invoice-box {
                                     max-width: 900px;
@@ -109,103 +108,74 @@
                         </head>
                     
                         <body>
+                            <t t-set="total" t-value="0"/>
+                                    <p t-foreach="o.doff_higiene_seguridad_detail_id" t-as="i"> 
+                                        <t t-set="total" t-value="total+i.qty"/> 
+                                    </p> 
                             <div class="invoice-box">
-
+								<h1 style="text-align: center;">
+                                	Comprobante Almacén  
+                                </h1>
+                                <br/>
+                                <br/>
                                 <table>
                                     <tr>
                                         <td style="text-align:left">
-                                            <p>Fecha de la factura: </p>
-                                            <p>Factura #: </p>
-                                            <p>Fecha de corte: </p>
+                                            <p>Fecha: </p>
+                                            <p>Destino: </p>
                                         </td>
                                         <td style="text-align:center">
-                                            <strong><p t-field="o.registration_date"/></strong>
-                                            <strong><p t-field="o.invoice_number"/></strong>
-                                            <strong><p t-field="o.cutoff_date"/></strong>                                        
+                                            <p t-field="o.registration_date"></p>
+                                            <p t-field="o.storage_destino"></p>                               
                                         </td>
-                                        <td></td>
+                                        <td>Total: </td>
+                                        <td><p t-esc="total"></p></td>
                                         <td style="text-align:left">
                                             <p>Proveedor: </p>
-                                            <p>Divisa: </p>
-                                            <p>Total: </p>
                                         </td>
                                         <td style="text-align:center">
-                                            <strong><p t-field="o.partner_id"/></strong>
-                                            <strong><p t-field="o.currency_id" invisible="1"/></strong>
-                                            <strong><span t-field="o.total_bill"/></strong>
+                                            <p t-field="o.suplier"></p>
                                         </td>
                                     </tr>
-
                                 </table>
-                                <table>
-                                    <tr class="information">
-                                        <td colspan="2">
-                                            <table>
-                                                <tr>
-                                                    <td style="text-align:left">
-                                                        Reporte mensual de impresiones
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                
+                                <br/>
+                                <br/>
+                                <br/>
+                                <table>                                  
                                     <tr class="heading">
-                                        <td>Tipo de impresion</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td style="text-align:center">Cantidad total</td>
+                                        <td style="text-align:left">Producto</td>
+                                        <td style="text-align:center">Nombre del producto</td>
+                                        <td style="text-align:center">Cantidad</td>
                                     </tr>
-                    
-
-
-                                    <t t-set="test_variable" t-value="0"/>
-                                    <p t-foreach="o.doff_printer_detail_ids" t-as="i"> 
-                                        <t t-set="test_variable" t-value="test_variable+i.total_bw"/> 
-                                    </p> 
-                                    <t t-set="test_variable2" t-value="0"/>
-                                    <p t-foreach="o.doff_printer_detail_ids" t-as="i"> 
-                                        <t t-set="test_variable2" t-value="test_variable2+i.total_c"/> 
-                                    </p> 
-                                
-                                    <tr class="details">
-                                        <td>Color</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td style="text-align:center"><p t-esc="test_variable"/></td>
-                                    </tr>
-                                    <tr class="details">
-                                        <td>Blanco y negro</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td style="text-align:center"><p t-esc="test_variable2"/></td>
-                                    </tr>                    
-                                    <tr class="heading">
-                                        <td style="text-align:left">Modelo</td>
-                                        <td style="text-align:center">Serie</td>
-                                        <td style="text-align:center">Ubicación</td>
-                                        <td style="text-align:center">Color</td>
-                                        <td style="text-align:center">Blanco y negro</td>
-                                    </tr>
-                                    <t t-foreach="o.doff_printer_detail_ids" t-as="l">
+                                    <t t-foreach="o.doff_higiene_seguridad_detail_id" t-as="l">
                                         <tr>
-                                            <td><p t-field="l.printer_model"/></td>
-                                            <td style="text-align:center"><p t-field="l.printer_series"/></td>
-                                            <td style="text-align:center"><p t-field="l.department_name"/></td>
-                                            <td style="text-align:center"><p t-field="l.total_c"/></td>
-                                            <td style="text-align:center"><p t-field="l.total_bw"/></td>
+                                            <td><p t-field="l.product_higiene_seguridad.id"/></td>
+                                            <td style="text-align:center"><p t-field="l.product_higiene_seguridad"/></td>
+                                            <td style="text-align:center"><p t-field="l.qty"/></td>
                                         </tr>
                                     </t>  
                                 </table>
-                            </div>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <span>Observaciones:</span>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <table>                                  
+                                    <tr>
+                                        <td style="text-align:left">Entregado por: ______________________</td>
+                                        <td style="text-align:center">              </td>
+                                        <td style="text-align:right">Recibido por: ______________________</td>
+                                    </tr>
+                                </table>
+                            </div>                          
                         </body>
                     </div>
                 </t>
             </t>
         </t>
     </template>
-
-</odoo>
+</odoo> 
