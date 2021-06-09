@@ -1,27 +1,19 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
-    'name' : 'Modulo de impresoras',
+    'name' : 'Generar contratos',
     'version' : '1.0',
-    'summary': 'Este es mi primer modulo en Odoo 11',
-    'sequence': 30,
+    'summary': 'Este modulo es para higiene y seguridad',
     'description': """
-    Este modulo fue hecho con amor.
+    Una peque descripcion
     """,    
     'author': "ICT",
     'category': 'Accounting',
     'website': 'www.roloskan.com',
     'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
-    'depends' : ['base'],
+    'depends' : ['base','product','stock'],
     'data': [
-        'wizard/printer_report_between_two_dates.xml',
-        'wizard/anual_report.xml',
-        'report/report_printer_by_month.xml',
-        'security/security.xml',
-        'views/printer.xml',
-        'views/device.xml',
-        'views/department.xml',
-        'views/menus.xml',
+        'report/doff_contract_report.xml',
     ],
     'demo': [],
     'qweb': [],

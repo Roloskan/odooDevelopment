@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="wizard_report_printer_anual_id">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <head>
+                            <meta charset="utf-8" />
+                            <title>Reporte anual</title>
+                    
+                            <style>
+                                body{margin-top:20px;
+                                    }
+                                    
+                                    .invoice {
+                                        padding: 30px;
+                                    }
+                                    
+                                    .invoice h2 {
+                                        margin-top: 0px;
+                                        line-height: 0.8em;
+                                    }
+                                    
+                                    .invoice .small {
+                                        font-weight: 300;
+                                    }
+                                    
+                                    .invoice hr {
+                                        margin-top: 10px;
+                                        border-color: #ddd;
+                                    }
+                                    
+                                    .invoice .table tr.line {
+                                        border-bottom: 1px solid #ccc;
+                                    }
+                                    
+                                    .invoice .table td {
+                                        border: none;
+                                    }
+                                    
+                                    .invoice .identity {
+                                        margin-top: 10px;
+                                        font-size: 1.1em;
+                                        font-weight: 300;
+                                    }
+                                    
+                                    .invoice .identity strong {
+                                        font-weight: 600;
+                                    }
+                                    
+                                    
+                                    .grid {
+                                        position: relative;
+                                        width: 100%;
+                                        background: #fff;
+                                        color: #666666;
+                                        border-radius: 2px;
+                                        margin-bottom: 25px;
+                                        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+                                    }
+                            </style>
+                        </head>
+                        <body>
+                            <div class="container">
+                                <div class="row">
+                                        <div class="col-xs-12">
+                                            <div class="grid invoice">
+                                                <div class="grid-body">
+                                                    <hr>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <br/>
+                                                                <br/>
+                                                                <h3 style="text-align:center">Reporte anual de impresiones a color</h3>
+                                                                <table class="table table-striped">
+                                                                    <thead>
+                                                                        <tr class="line">
+                                                                            <td style="text-align:center">Ubicación</td>
+                                                                            <td style="text-align:center">Modelo</td>
+                                                                            <td style="text-align:center">Serie</td>
+                                                                            <td style="text-align:center">Enero</td>
+                                                                            <td style="text-align:center">Febrero</td>
+                                                                            <td style="text-align:center">Marzo</td>
+                                                                            <td style="text-align:center">Abril</td>
+                                                                            <td style="text-align:center">Mayo</td>
+                                                                            <td style="text-align:center">Junio</td>
+                                                                            <td style="text-align:center">Julio</td>
+                                                                            <td style="text-align:center">Agosto</td>
+                                                                            <td style="text-align:center">Septiebre</td>
+                                                                            <td style="text-align:center">Octubre</td>
+                                                                            <td style="text-align:center">Noviembre</td>
+                                                                            <td style="text-align:center">Diciembre</td>
+                                                                            <td style="text-align:center">Total Anual</td>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <t t-foreach="o.doff_printer_report_between_two_dates_detail_id" t-as="l">
+                                                                                <tr>
+                                                                                    <td style="text-align:center"><p t-field="l.department_name"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.printer_model"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.printer_series"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.EneroC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.FebreroC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.MarzoC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.AbrilC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.MayoC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.JunioC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.JulioC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.AgostoC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.SeptiembreC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.OctubreC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.NoviembreC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.DiciembreC"/></td>
+                                                                                    <td style="text-align:center"><p t-field="l.gran_total_color"/></td>
+                                                                                </tr>
+                                                                            </t>  
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>									
+                                                        </div>
+                                                    </hr>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+                                <!-- Impresiones en blanco y negro -->
+                                <div class="container">
+                                    <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="grid invoice">
+                                                    <div class="grid-body">
+                                                        <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <br/>
+                                                                    <br/>
+                                                                    <h3 style="text-align:center">Reporte anual de impresiones en blanco y negro</h3>
+                                                                    <table class="table table-striped">
+                                                                        <thead>
+                                                                            <tr class="line">
+                                                                                <td style="text-align:center">Ubicación</td>
+                                                                                <td style="text-align:center">Modelo</td>
+                                                                                <td style="text-align:center">Serie</td>
+                                                                                <td style="text-align:center">Enero</td>
+                                                                                <td style="text-align:center">Febrero</td>
+                                                                                <td style="text-align:center">Marzo</td>
+                                                                                <td style="text-align:center">Abril</td>
+                                                                                <td style="text-align:center">Mayo</td>
+                                                                                <td style="text-align:center">Junio</td>
+                                                                                <td style="text-align:center">Julio</td>
+                                                                                <td style="text-align:center">Agosto</td>
+                                                                                <td style="text-align:center">Septiebre</td>
+                                                                                <td style="text-align:center">Octubre</td>
+                                                                                <td style="text-align:center">Noviembre</td>
+                                                                                <td style="text-align:center">Diciembre</td>
+                                                                                <td style="text-align:center">Total Anual</td>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <t t-foreach="o.doff_printer_report_between_two_dates_detail_id" t-as="l">
+                                                                                    <tr>
+                                                                                        <td style="text-align:center"><p t-field="l.department_name"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.printer_model"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.printer_series"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.EneroB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.FebreroB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.MarzoB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.AbrilB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.MayoB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.JunioB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.JulioB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.AgostoB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.SeptiembreB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.OctubreB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.NoviembreB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.DiciembreB"/></td>
+                                                                                        <td style="text-align:center"><p t-field="l.gran_total_bw"/></td>
+                                                                                    </tr>
+                                                                                </t>  
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>									
+                                                            </div>
+                                                        </hr>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </body>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="paperformat_print_anual_landscape" model="report.paperformat">
+        <field name="name">A4 Barcode Paper</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">8</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">5</field>
+        <field name="dpi">90</field>
+    </record>
+</odoo>

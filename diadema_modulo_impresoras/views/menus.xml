@@ -7,7 +7,17 @@
         report_type="qweb-pdf"
         name="diadema_modulo_impresoras.report_printer_months"
         file="diadema_modulo_impresoras.report_printer_months"/>
-		
+
+	<report
+		id="anual_report_id"
+		string="Generar reporte anual del consumo de impresoras"
+		model="doff.printer.report.between.two.dates"
+		report_type="qweb-pdf"
+		name="diadema_modulo_impresoras.wizard_report_printer_anual_id"
+		file="diadema_modulo_impresoras.wizard_report_printer_anual_id"
+		paperformat="paperformat_print_anual_landscape"
+	/>
+
 	<menuitem id="raw_impresoras_menu1" 
 		name="Impresoras" 
 		sequence="1" 

@@ -86,6 +86,7 @@
 		<field name="model">doff.printer</field>
 		<field name="arch" type="xml">
 			<tree>
+				<field name="cutoff_date"/>
 				<field name="registration_date"/>
                 <field name="responsable_id"/>
 			</tree>

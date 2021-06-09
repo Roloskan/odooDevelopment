@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from custom.diadema_modulo_impresoras.models.printer import printer, printerDetail
-from odoo import models, fields
+from odoo import models, fields, api
 
 class createReport(models.TransientModel):
     _name = 'doff.printer.report.between.two.dates'
@@ -13,145 +13,197 @@ class createReport(models.TransientModel):
     
     doff_printer_report_between_two_dates_detail_id = fields.One2many("doff.printer.report.between.two.dates.detail","doff_printer_report_between_two_dates_id", "doff_printer_report_between_two_dates_detail_id")
 
+    @api.one
     def get_data(self):
-        printer_data = self.env['doff.printer'].search([('cutoff_date','>=',self.cutoff_date1),
-                                                        ('cutoff_date','<=',self.cutoff_date2)])
-        
+        self.ensure_one()
+        printer_data = self.env['doff.printer.detail'].search([
+                                                        ('doff_printer_id.cutoff_date','>=',self.cutoff_date1),
+                                                        ('doff_printer_id.cutoff_date','<=',self.cutoff_date2)])
+       
         obj_create = self.env["doff.printer.report.between.two.dates.detail"]
         obj_delete = self.env["doff.printer.report.between.two.dates.detail"].search([('doff_printer_report_between_two_dates_id','=',self.id)]).unlink()
-
+        
         #Variables para obtener el total anual
         ftotal_c = 0
         ftotal_bw = 0
 
         #Asigno el total de impresiones segun la fecha, 01 = Enero; Numero de impresiones de ese mes: xx
         for rec in printer_data:
-           date = rec.cutoff_date
-           split = date.split("-")
-           date = split[1]
-           ftotal_c += rec.doff_printer_detail_id.total_c
-           ftotal_bw += rec.doff_printer_detail_id.total_bw
+           
+            date = rec.doff_printer_id.cutoff_date
+            split = date.split("-")
+            date = split[1]
 
-           if date == "01":
-               self.EneroC = rec.doff_printer_detail_id.total_c
-               self.EneroB = rec.doff_printer_detail_id.total_bw
-           if date == "02":
-               self.FebreroC = rec.doff_printer_detail_id.total_c
-               self.FebreroB = rec.doff_printer_detail_id.total_bw
-           if date == "03":
-               self.MarzoC = rec.doff_printer_detail_id.total_c
-               self.MarzoB = rec.doff_printer_detail_id.total_bw
-           if date == "04":
-               self.AbrilC = rec.doff_printer_detail_id.total_c
-               self.AbrilB = rec.doff_printer_detail_id.total_bw
-           if date == "05":
-               self.MayoC = rec.doff_printer_detail_id.total_c
-               self.MayoB = rec.doff_printer_detail_id.total_bw
-           if date == "06":
-               self.JunioC = rec.doff_printer_detail_id.total_c
-               self.JunioB = rec.doff_printer_detail_id.total_bw
-           if date == "07":
-               self.JulioC = rec.doff_printer_detail_id.total_c
-               self.JulioB = rec.doff_printer_detail_id.total_bw
-           if date == "08":
-               self.AgostoC = rec.doff_printer_detail_id.total_c
-               self.AgostoB = rec.doff_printer_detail_id.total_bw
-           if date == "09":
-               self.SeptiembreC = rec.doff_printer_detail_id.total_c
-               self.SeptiembreB = rec.doff_printer_detail_id.total_bw
-           if date == "10":
-               self.OctubreC = rec.doff_printer_detail_id.total_c
-               self.OctubreB = rec.doff_printer_detail_id.total_bw
-           if date == "11":
-               self.NoviembreC = rec.doff_printer_detail_id.total_c
-               self.NoviembreB = rec.doff_printer_detail_id.total_bw
-           if date == "12":
-               self.DiciembreC = rec.doff_printer_detail_id.total_c
-               self.DiciembreB = rec.doff_printer_detail_id.total_bw
+            veri = self.env["doff.printer.report.between.two.dates.detail"].search([('doff_printer_report_between_two_dates_id','=',self.id),
+                                                                                    ('printer_series','=',rec.printer_series.printer_series)])
+           
+            if not veri:
 
-        self.gran_total_color = ftotal_c
-        self.gran_total_bw = ftotal_bw
+                vals_color = {
+                    "printer_model":rec.printer_model,
+                    "printer_series":rec.printer_series.printer_series,
+                    "department_name":rec.department_name.department_name,
+                    "users_numbers":rec.users_numbers,
+                    "doff_printer_report_between_two_dates_id":self.id
+                }
 
-        #Lleno el formulario creado en la vista.
-        for rec1 in printer_data:
-            vals_color = {
-                "printer_model":rec1.doff_printer_detail_id.printer_model,
-                "printer_series":rec1.doff_printer_detail_id.printer_series.printer_series,
-                "department_name":rec1.doff_printer_detail_id.department_name.department_name,
-                "users_numbers":rec1.doff_printer_detail_id.users_numbers,
-                "EneroC":self.EneroC,
-                "FebreroC":self.FebreroC,
-                "MarzoC":self.MarzoC,
-                "AbrilC":self.AbrilC,
-                "MayoC":self.MayoC,
-                "JunioC":self.JunioC,
-                "JulioC":self.JulioC,
-                "AgostoC":self.AgostoC,
-                "SeptiembreC":self.SeptiembreC,
-                "OctubreC":self.OctubreC,
-                "NoviembreC":self.NoviembreC,
-                "DiciembreC":self.DiciembreC,
-                "gran_total_color":self.gran_total_color,
-                "doff_printer_report_between_two_dates_id":self.id
-            }
+                if date == "01":
+                    vals_color["EneroC"] = rec.total_c
+                    vals_color["EneroB"] = rec.total_bw
+                
+                if date == "02":
+                    vals_color["FebreroC"] = rec.total_c
+                    vals_color["FebreroB"] = rec.total_bw
+                
+                if date == "03":
+                    vals_color["MarzoC"] = rec.total_c
+                    vals_color["MarzoB"] = rec.total_bw
+                if date == "04":
+                    vals_color["AbrilC"] = rec.total_c
+                    vals_color["AbrilB"] = rec.total_bw
+                
+                if date == "05":
+                    vals_color["MayoC"] = rec.total_c
+                    vals_color["MayoB"] = rec.total_bw
+                
+                if date == "06":
+                    vals_color["JunioC"] = rec.total_c
+                    vals_color["JunioB"] = rec.total_bw
+                
+                if date == "07":
+                    vals_color["JulioC"] = rec.total_c
+                    vals_color["JulioB"] = rec.total_bw
+                
+                if date == "08":
+                    vals_color["AgostoC"] = rec.total_c
+                    vals_color["AgostoB"] = rec.total_bw
+                
+                if date == "09":
+                    vals_color["SeptiembreC"] = rec.total_c
+                    vals_color["SeptiembreB"] = rec.total_bw
+                
+                if date == "10":
+                    vals_color["OctubreC"] = rec.total_c
+                    vals_color["OctubreB"] = rec.total_bw
+                
+                if date == "11":
+                    vals_color["NoviembreC"] = rec.total_c
+                    vals_color["NoviembreB"] = rec.total_bw
+                
+                if date == "12":
+                    vals_color["DiciembreC"] = rec.total_c
+                    vals_color["DiciembreB"] = rec.total_bw
 
+                obj_create.create(vals_color)
+               
+            else:
 
-            vals_bw = {
-                "printer_model":rec1.doff_printer_detail_id.printer_model,
-                "printer_series":rec1.doff_printer_detail_id.printer_series.printer_series,
-                "department_name":rec1.doff_printer_detail_id.department_name.department_name,
-                "users_numbers":rec1.doff_printer_detail_id.users_numbers,
-                "EneroB":self.EneroB,
-                "FebreroB":self.FebreroB,
-                "MarzoB":self.MarzoB,
-                "AbrilB":self.AbrilB,
-                "MayoB":self.MayoB,
-                "JunioB":self.JunioB,
-                "JulioB":self.JulioB,
-                "AgostoB":self.AgostoB,
-                "SeptiembreB":self.SeptiembreB,
-                "OctubreB":self.OctubreB,
-                "NoviembreB":self.NoviembreB,
-                "DiciembreB":self.DiciembreB,
-                "gran_total_bw":self.gran_total_bw,
-                "doff_printer_report_between_two_dates_id":self.id
-            }
+                if date == "01":
+                    veri.EneroC += rec.total_c
+                    veri.EneroB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+                
+                if date == "02":
+                    veri.FebreroC += rec.total_c
+                    veri.FebreroB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+                
+                if date == "03":
+                    veri.MarzoC += rec.total_c
+                    veri.MarzoB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+
+                if date == "04":
+                    veri.AbrilC += rec.total_c
+                    veri.AbrilB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+                
+                if date == "05":
+                    veri.MayoC += rec.total_c
+                    veri.MayoB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+                
+                if date == "06":
+                    veri.JunioC += rec.total_c
+                    veri.JunioB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+                
+                if date == "07":
+                    veri.JulioC += rec.total_c
+                    veri.JulioB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+                
+                if date == "08":
+                    veri.AgostoC += rec.total_c
+                    veri.AgostoB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+                
+                if date == "09":
+                    veri.SeptiembreC += rec.total_c
+                    veri.SeptiembreB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+                
+                if date == "10":
+                    veri.OctubreC += rec.total_c
+                    veri.OctubreB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+                
+                if date == "11":
+                    veri.NoviembreC += rec.total_c
+                    veri.NoviembreB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
+                
+                if date == "12":
+                    veri.DiciembreC += rec.total_c
+                    veri.DiciembreB += rec.total_bw
+                    veri.gran_total_color +=  rec.total_c
+                    veri.gran_total_bw +=  rec.total_bw
         
-        obj_create.create(vals_color)
 
 class createReportDetail(models.TransientModel):
     _name = 'doff.printer.report.between.two.dates.detail'
 
-    
+    cutoff_date = fields.Date("Fecha de corte")
     #Impresiones Color
-    EneroC = fields.Integer("Enero")
-    FebreroC= fields.Integer("Febrero")
-    MarzoC = fields.Integer("Marzo")
-    AbrilC = fields.Integer("Abril")
-    MayoC = fields.Integer("Mayo")
-    JunioC = fields.Integer("Junio")
-    JulioC = fields.Integer("Julio")
-    AgostoC = fields.Integer("Agosto")
-    SeptiembreC = fields.Integer("Septiembre")
-    OctubreC = fields.Integer("Octubre")
-    NoviembreC = fields.Integer("Noviembre")
-    DiciembreC = fields.Integer("Diciembre") 
-    gran_total_color = fields.Integer("Total anual")
+    EneroC = fields.Integer("Enero (color)")
+    FebreroC= fields.Integer("Febrero (color)")
+    MarzoC = fields.Integer("Marzo (color)")
+    AbrilC = fields.Integer("Abril (color)")
+    MayoC = fields.Integer("Mayo (color)")
+    JunioC = fields.Integer("Junio (color)")
+    JulioC = fields.Integer("Julio (color)")
+    AgostoC = fields.Integer("Agosto (color)")
+    SeptiembreC = fields.Integer("Septiembre (color)")
+    OctubreC = fields.Integer("Octubre (color)")
+    NoviembreC = fields.Integer("Noviembre (color)")
+    DiciembreC = fields.Integer("Diciembre (color)") 
+    gran_total_color = fields.Integer("Total anual (color)")
 
     #Impresiones Blanco y Negro
-    EneroB = fields.Integer("EneroB")
-    FebreroB= fields.Integer("FebreroB")
-    MarzoB = fields.Integer("MarzoB")
-    AbrilB = fields.Integer("AbrilB")
-    MayoB = fields.Integer("MayoB")
-    JunioB = fields.Integer("JunioB")
-    JulioB = fields.Integer("JulioB")
-    AgostoB = fields.Integer("AgostoB")
-    SeptiembreB = fields.Integer("SeptiembreB")
-    OctubreB = fields.Integer("OctubreB")
-    NoviembreB = fields.Integer("NoviembreB")
-    DiciembreB = fields.Integer("DiciembreB") 
-    gran_total_bw = fields.Integer("Total anual")   
+    EneroB = fields.Integer("Enero (B/N)")
+    FebreroB= fields.Integer("Febrero (B/N)")
+    MarzoB = fields.Integer("Marzo (B/N)")
+    AbrilB = fields.Integer("Abril (B/N)")
+    MayoB = fields.Integer("Mayo (B/N)")
+    JunioB = fields.Integer("Junio (B/N)")
+    JulioB = fields.Integer("Julio (B/N)")
+    AgostoB = fields.Integer("Agosto (B/N)")
+    SeptiembreB = fields.Integer("Septiembre (B/N)")
+    OctubreB = fields.Integer("Octubre (B/N)")
+    NoviembreB = fields.Integer("Noviembre (B/N)")
+    DiciembreB = fields.Integer("Diciembre (B/N)") 
+    gran_total_bw = fields.Integer("Total anual (B/N)")   
 
     #Informacion General de las Impresoras
     printer_model = fields.Char("Modelo")

@@ -18,7 +18,7 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Reporte de impresiones a color" readonly="1"> 
+                        <page string="Reporte anual de impresiones" readonly="1"> 
                             <field name="doff_printer_report_between_two_dates_detail_id" readonly="1">
                                 <tree>
                                     <field 
@@ -32,13 +32,24 @@
                                     />
                                     <field 
                                         name="users_numbers"
+                                        style="width:80% !important"
+                                        sum="Total Usuarios"
                                     />
                                     <field 
                                         name="EneroC"
                                         sum="Total Enero"
                                     />
                                     <field 
+                                        name="EneroB"
+                                        sum="Total Enero"
+                                    />
+                                    
+                                    <field 
                                         name="FebreroC"
+                                        sum="Total Febrero"
+                                    />
+                                    <field 
+                                        name="FebreroB"
                                         sum="Total Febrero"
                                     />
                                     <field 
@@ -46,7 +57,15 @@
                                         sum="Total Diciembre"
                                     />
                                     <field 
+                                        name="MarzoB"
+                                        sum="Total Diciembre"
+                                    />
+                                    <field 
                                         name="AbrilC"
+                                        sum="Total Abril"
+                                    />
+                                    <field 
+                                        name="AbrilB"
                                         sum="Total Abril"
                                     />
                                     <field 
@@ -54,7 +73,15 @@
                                         sum="Total Mayo"
                                     />
                                     <field 
+                                        name="MayoB"
+                                        sum="Total Mayo"
+                                    />
+                                    <field 
                                         name="JunioC"
+                                        sum="Total Junio"
+                                    />
+                                    <field 
+                                        name="JunioB"
                                         sum="Total Junio"
                                     />
                                     <field 
@@ -62,7 +89,15 @@
                                         sum="Total Julio"
                                     />
                                     <field 
+                                        name="JulioB"
+                                        sum="Total Julio"
+                                    />
+                                    <field 
                                         name="AgostoC"
+                                        sum="Total Agosto"
+                                    />
+                                    <field 
+                                        name="AgostoB"
                                         sum="Total Agosto"
                                     />
                                     <field 
@@ -70,7 +105,15 @@
                                         sum="Total Septiembre"
                                     />
                                     <field 
+                                        name="SeptiembreB"
+                                        sum="Total Septiembre"
+                                    />
+                                    <field 
                                         name="OctubreC"
+                                        sum="Total Octubre"
+                                    />
+                                    <field 
+                                        name="OctubreB"
                                         sum="Total Octubre"
                                     />
                                     <field 
@@ -78,11 +121,23 @@
                                         sum="Total Noviembre"
                                     />
                                     <field 
+                                        name="NoviembreB"
+                                        sum="Total Noviembre"
+                                    />
+                                    <field 
                                         name="DiciembreC"
                                         sum="Total Diciembre"
                                     />
                                     <field 
+                                        name="DiciembreB"
+                                        sum="Total Diciembre"
+                                    />
+                                    <field 
                                         name="gran_total_color"
+                                        sum="Total Anual"
+                                    />
+                                    <field 
+                                        name="gran_total_bw"
                                         sum="Total Anual"
                                     />
                                 </tree>
