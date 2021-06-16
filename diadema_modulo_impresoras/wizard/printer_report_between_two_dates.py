@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from custom.diadema_modulo_impresoras.models.printer import printer, printerDetail
 from odoo import models, fields, api
 
 class createReport(models.TransientModel):

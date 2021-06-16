@@ -18,37 +18,47 @@
 		paperformat="paperformat_print_anual_landscape"
 	/>
 
-	<menuitem id="raw_impresoras_menu1" 
+	<menuitem 
+		id="raw_impresoras_menu1" 
 		name="Impresoras" 
 		sequence="1" 
-		web_icon=""/>
+		groups="group_user_printer,group_manager_printer"
+		web_icon="diadema_modulo_impresoras,static/description/icon.png"
+	/>
 
 			<!--Consumo de impresoras-->
-			<menuitem id="bale_menu_category2" 
+			<menuitem 
+				id="bale_menu_category2" 
 				name="Consumo de impresoras" 
 				sequence="1" 
 				parent="raw_impresoras_menu1"
-				groups= "group_manager_printer,group_user_printer"
-				action="bale_income_menu_action"/>
+				groups="group_user_printer,group_manager_printer"				
+				action="bale_income_menu_action"
+			/>
 
 			<menuitem id="bale_menu_category3" 
-			name="Gestionar impresoras" 
-			sequence="1" 
-			parent="raw_impresoras_menu1"
-			groups= "group_manager_printer,group_user_printer"
-			action="bale_income_menu_action2"/>
+				name="Gestionar impresoras" 
+				sequence="1" 
+				parent="raw_impresoras_menu1"
+				groups="group_user_printer,group_manager_printer"
+				action="bale_income_menu_action2"
+			/>
 			
-			<menuitem id="bale_menu_category4" 
+			<menuitem 
+				id="bale_menu_category4" 
 				name="Gestionar departamentos" 
 				sequence="1" 
 				parent="raw_impresoras_menu1"
-				groups= "group_manager_printer,group_user_printer"
-				action="bale_income_menu_action3"/>
+				groups="group_user_printer,group_manager_printer"
+				action="bale_income_menu_action3"
+			/>
 			
-			<menuitem id="bale_menu_category5" 
+			<menuitem 
+				id="bale_menu_category5" 
 				name="Reportes" 
 				sequence="1" 
 				parent="raw_impresoras_menu1"
-				groups= "group_manager_printer,group_user_printer"
-				action="bale_income_menu_action4"/>
+				groups="group_user_printer,group_manager_printer"
+				action="bale_income_menu_action4"
+			/>
 </odoo>

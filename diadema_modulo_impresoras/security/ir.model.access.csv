@@ -1,9 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-printer_access_rights_printer_admin, doff.printer,model_doff_printer,printer_access_rights.group_manager,1,1,1,1
-printer_access_rights_printer_user, doff.printer,model_doff_printer,printer_access_rights.group_user,1,0,0,0
+printer_admin,permisos_admin ,model_doff_printer,diadema_modulo_impresoras.group_manager_printer,1,1,1,1
+device_admin,permisos_admin,model_doff_device,diadema_modulo_impresoras.group_manager_printer,1,1,1,1
+department_admin,permisos_admin,model_doff_department,diadema_modulo_impresoras.group_manager_printer,1,1,1,1
+reportes_admin,permisos_admin,model_doff_printer_report_between_two_dates,diadema_modulo_impresoras.group_manager_printer,1,1,1,1
 
-printer_access_rights_device_admin, doff.device,model_doff_device,printer_access_rights.group_manager,1,1,1,1
-printer_access_rights_device_user, doff.device,model_doff_device,printer_access_rights.group_user,1,0,0,0
-
-printer_access_rights_department_admin, doff.department,model_doff_department,printer_access_rights.group_manager,1,1,1,1
-printer_access_rights_department_user, doff.department,model_doff_department,printer_access_rights.group_user,1,0,0,0
+printer_user,permisos_user ,model_doff_printer,diadema_modulo_impresoras.group_user_printer,1,0,0,0
+device_user,permisos_user,model_doff_device,diadema_modulo_impresoras.group_user_printer,1,0,0,0
+department_user,permisos_user,model_doff_department,diadema_modulo_impresoras.group_user_printer,1,0,0,0
+reportes_user,permisos_user,model_doff_printer_report_between_two_dates,diadema_modulo_impresoras.group_user_printer,1,0,0,0
