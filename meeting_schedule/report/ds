@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="doff_contrato_report_id">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <head>
+                            <meta charset="utf-8" />
+                            <title>Reporte mensual</title>
+                    
+                            <style>
+                                .invoice-box {
+                                    max-width: 900px;
+                                    margin: auto;
+                                    padding: 30px;
+                                    border: 1px solid #eee;
+                                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+                                    font-size: 15px;
+                                    line-height: 20px;
+                                    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                    color: #555;
+                                }
+                    
+                                .invoice-box table {
+                                    width: 100%;
+                                    line-height: inherit;
+                                    text-align: left;
+                                }
+                    
+                                .invoice-box table td {
+                                    vertical-align: top;
+                                }
+                    
+                                .invoice-box table tr td:nth-child(2) {
+                                    text-align: right;
+                                }
+                    
+                                .invoice-box table tr.top table td {
+                                    padding-bottom: 30px;
+                                }
+                    
+                                .invoice-box table tr.top table td.title {
+                                    font-size: 45px;
+                                    line-height: 45px;
+                                    color: #333;
+                                }
+                    
+                                .invoice-box table tr.information table td {
+                                    padding-bottom: 40px;
+                                }
+                    
+                                .invoice-box table tr.heading td {
+                                    background: #eee;
+                                    border-bottom: 1px solid #ddd;
+                                    font-weight: bold;
+                                }
+                    
+                                .invoice-box table tr.details td {
+                                    padding-bottom: 10px;
+                                }
+                    
+                                .invoice-box table tr.item td {
+                                    border-bottom: 1px solid #eee;
+                                }
+                    
+                                .invoice-box table tr.item.last td {
+                                    border-bottom: none;
+                                }
+                    
+                                .invoice-box table tr.total td:nth-child(2) {
+                                    border-top: 2px solid #eee;
+                                    font-weight: bold;
+                                }
+                    
+                                @media only screen and (max-width: 600px) {
+                                    .invoice-box table tr.top table td {
+                                        width: 100%;
+                                        display: block;
+                                        text-align: center;
+                                    }
+                    
+                                    .invoice-box table tr.information table td {
+                                        width: 100%;
+                                        display: block;
+                                        text-align: center;
+                                    }
+                                }
+                    
+                                /** RTL **/
+                                .invoice-box.rtl {
+                                    direction: rtl;
+                                    font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+                                }
+                    
+                                .invoice-box.rtl table {
+                                    text-align: right;
+                                }
+                    
+                                .invoice-box.rtl table tr td:nth-child(2) {
+                                    text-align: left;
+                                }
+
+                                .center {
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                  }
+                            </style>
+                        </head>
+                    
+                        <body>
+                            <p style="margin-left:0px; text-align:right"><span style="color:#000000">CONT. ADZFH/2021-No._____</span></p>
+                            <p style="margin-left:0px; text-align:center"><span style="color:#000000"><strong>CONTRATO INDIVIDUAL DE TRABAJO</strong></span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000">Nosotros: La sociedad mercantil denominada Agroindustrias Diadema Zona Franca Honduras S.A., constituida de conformidad a las leyes de la República de Honduras, representada en este acto por el Señor <strong>MANUEL DE JESUS BATISTA LIRIANO</strong>, mayor de edad, casado, dominicano, Carne de Residente N. 01-2201-2016-00135, con domicilio y residencia en Danlí, Departamento de El Paraíso, en su condición de Gerente General de dicha Sociedad que en lo sucesivo y en nombre de su Representada se denominará <strong>EL PATRONO</strong>, y <strong>OSCAR ANIBAL CORDOVA GARCIA</strong>, mayor de edad, Nacionalidad: Hondureña con domicilio <strong>ALDEA LA LIMA JAMASTRAN</strong>, con identidad No. 0703-1997-04961 , que en lo sucesivo se denominará <strong>EL TRABAJADOR</strong>, por este medio hacemos constar libre y espontáneamente que de común acuerdo hemos convenido celebrar el presente <strong>CONTRATO INDIVIDUAL DE TRABAJO</strong> y se regirá por las cláusulas y estipulaciones siguientes: </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>PRIMERA: OBJETO DEL CONTRATO:</strong> EL PATRONO, en el carácter que comparece expresa que requiere los servicios de EL TRABAJADOR, para laborar en la posición de: OPERARIO BONCHERO. </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>SEGUNDA.- DECLARACIONES:</strong> EL PATRONO acepta emplearlo para el desempeño de las funciones mencionadas y actividades conexas, quedando entendidas las partes de que si dentro del término de sesenta días contados a partir de la fecha de este contrato, EL TRABAJADOR no demuestra la capacidad y aptitudes a que se refiere, EL PATRONO podrá prescindir de él sin responsabilidad alguna. Asimismo, declara EL TRABAJADOR que al aceptar el presente contrato tiene pleno conocimiento y entendimiento de las actividades que EL PATRONO requiere estando en la disposición y flexibilidad de horarios, lugar, jornada y puesto de trabajo, aceptando realizar otras funciones que se le asignen con la capacitación previa y necesaria para desempeñarlas en condiciones de eficiencia y seguridad. </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>TERCERA.- TIEMPO DE DURACION:</strong> El presente contrato es por tiempo indefinido, iniciando a partir del 10 de Enero del año 2021; y para su modificación o rescisión, las partes deberán ponerse de acuerdo, o en su defecto, se sujetará a las disposiciones relativas del Código de Trabajo Hondureño vigente. Se entiende que los primeros sesenta (60) días son y serán considerados período de prueba, término dentro del cual las partes podrán dar por terminado el presente Contrato sin responsabilidad de ninguna naturaleza para ambas partes. </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>CUARTA.- SEDE DE LA PRESTACIÓN DEL SERVICIO:</strong> El Trabajador, prestará sus servicios en Agroindustrias Diadema zona Franca Honduras S.A. ubicada en San Marcos Abajo Kilómetro 5 de carretera Panamericana que conduce de la ciudad de Danlí a la ciudad de El Paraíso.  </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>QUINTA.- JORNADA LABORAL:</strong> La jornada laboral se desarrollará cumpliendo cuarenta y cuatro horas a la semana, tal y como lo establece el Código de Trabajo de la Republica de Honduras. Las jornadas de trabajo serán de lunes a viernes en un horario de ocho de la mañana a cinco de la tarde (8:00 a.m.-5:00 p.m.) y los sábados de ocho de la mañana a las doce del mediodía (8:00 a.m. - 12:00 m.d.), gozando de una hora de descanso para ingerir sus alimentos. En caso de ser necesario, dicho horario podrá ser modificado por acuerdo previo de ambas partes, de conformidad a las necesidades que las labores del TRABAJADOR se requieran, entendiendo en todo caso que dichas jomadas siempre serán acorde con lo establecido en el Código de Trabajo. Para el control de su asistencia deberá registrarse en el reloj electrónico digital y/o en la lista de control de la entrada principal que indique la empresa. EL TRABAJADOR gozara de un (1) día de descanso, preferentemente el domingo, por cada semana de trabajo. Además, gozará los días feriados estipulados en el Código de Trabajo. </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>SEXTA.- SALARIO: </strong>El salario convenido como retribución por los servicios a que este contrato se refiere es de <strong>acuerdo a producción (L. ...)</strong>, semanal, los que le serán pagados en moneda de curso legal mediante depósito vía transferencia electrónica en la cuenta de planilla a través del banco electo por la empresa o en su defecto mediante emisión de cheque. Independientemente de la modalidad de pago, el trabajador se obliga a dar por recibido el importe de sus pagos mediante la firma personal de la nómina o planilla, o en su defecto la emisión del recibo respectivo. </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>SÉPTIMA.- UTILES, MATERIALES Y EQUIPO:</strong> EL PATRONO, proporcionará al trabajador los útiles, materiales y equipo necesario para la ejecución del trabajo, lo mismo que el espacio físico de las instalaciones durante las horas laborales. En el caso del equipo facilitado, este será devuelto en buen estado y con las condiciones óptimas para que su sucesor pueda hacer uso de los mismos, caso contrario estará sujeto a las políticas internas para el uso de equipos de la empresa. </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>OCTAVA.- CONFIDENCIALIDAD:</strong> EL TRABAJADOR se obliga a no divulgar ninguno de los aspectos de los negocios de EL PATRONO, ni proporcionará a tercera persona, verbalmente o por escrito, directa o indirectamente, información alguna sobre los sistemas y actividades de cualquier clase que observe de EL PATRONO en el desarrollo de sus actividades y no mostrará a terceros los documentos, expedientes, escritos, artículos, contratos, bitácoras, estados de cuenta, y demás materiales e información que le proporcione EL PATRONO o que prepare o formule con relación a sus servicios. </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>NOVENA.- DEL INCUMPLIMIENTO DE SUS OBLIGACIONES:</strong> El incumplimiento de alguna de sus obligaciones contractuales, legales o reglamentarias por parte del TRABAJADOR, dará derecho al PATRONO a aplicar las sanciones que procedan, hasta dar por terminada la relación laboral según la gravedad de la causa o falta, a tal efecto se considera incorporado a este contrato, el Reglamento Inteno de Trabajo de Agroindustrias Diadema Zona Franca Honduras S.A.  </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>DECIMA.- DE LAS INASISTENCIAS:</strong> Las inasistencias Injustificadas al Trabajo por parte del TRABAJADOR por dos (2) días consecutivos o tres días alternos al término de un (1) mes dará al PATRONO derecho a dar por terminado el contrato y por ende a prescindir de los servicios del Trabajador sin responsabilidad alguna de su parte. Las inasistencias solamente podrán justificarse mediante permiso por escrito, solicitado con 48 horas de anticipación; a excepción de los casos de incapacidad emitida y autorizada por el Instituto Hondureño de Seguridad Social, o caso fortuito de mérito y pleno conocimiento de la administración.  </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>DECIMA PRIMERA: DERECHOS ADQUIRIDOS:</strong> El Trabajador tendrá Derecho al pago del Décimo Tercer Mes en concepto de Aguinaldo, efectivo en el mes de diciembre de cada año, al pago del Décimo Cuarto Mes en concepto de Compensación Social en el mes de Junio de cada año y a vacaciones; estos beneficios se otorgarán en proporción al tiempo laborado. Los demás derechos como preaviso y cesantía estarán condicionados a la forma de terminación de contrato (renuncia o despido) y la proporción del tiempo laborado a partir de la firma del presente contrato; en todo caso se aplicarán lo establecido en los Artículos 116 y 120 del Código de Trabajo.  </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>DECIMA SEGUNDA.- CAUSAS DE TERMINACION DEL CONTRATO: </strong>El presente Contrato podrá ser terminado por las causas siguientes: </span></p>
+                            <ol>
+                                <li style="text-align: justify;"><span style="color: #000000;">El mutuo consentimiento de las partes; </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">El preaviso entre las partes. </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Muerte del Trabajador o incapacidad física o mental del mismo que haga imposible el cumplimiento del contrato; </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Enfermedad del trabajador en el caso previsto en el artículo 104 del Código del Trabajo: </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Perdida de la libertad del Trabajador por detención o la prisión decretada por la autoridad competente de acuerdo a lo establecido en el artículo 106 del Código del Trabajo; </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Por el manifiesto incumplimiento del Trabajador de las obligaciones contraídas en este contrato; </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Por el ejercicio de las facultades que concede a las partes los artículos 112 y 114 del Código del Trabajo; </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Todo acto de violencia, injurias u ofensas, malos tratamientos o indisciplina, en que incurra el trabajador durante sus labores, contra el patrono, los miembros de su familia, jefes o los compañeros de trabajo. </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Todo acto de violencia, injurias, ofensas o malos tratamientos, fuera del servicio, en contra del patrono, de los miembros de su familia, jefes y compañeros de trabajo. </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Todo daño material causado dolosamente a los edificios, obras, maquinaria o materias primas, instrumentos y demás objetos relacionados con el trabajo y toda grave negligencia que ponga en peligro la seguridad de las personas o de las cosas;  </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Todo acto inmoral o delictuoso que el trabajador cometa en el taller, establecimiento o lugar de trabajo </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Revelar los secretos técnicos o comerciales o dar a conocer asuntos de carácter reservado en perjuicio de la empresa; </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Cuando el trabajador deje de asistir al trabajo sin permiso del patrono o sin causa justificada durante dos (2) días completos y consecutivos o durante tres (3) días hábiles alternos en el término de un (1) mes; </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">La negativa manifiesta y reiterada del trabajador a adoptar las medidas preventivas o a seguir los procedimientos indicados para evitar accidentes o enfermedades. </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">La inhabilidad o la ineficiencia manifiesta del trabajador que haga imposible el cumplimiento del contrato; </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Por caso Fortuito o Fuerza Mayor;                             </span></li>
+                                <li style="text-align: justify;"><span style="color: #000000;">Las demás establecidas en el Código del Trabajo, las demás Leyes y Reglamento de Agroindustrias Diadema Zona Franca Honduras S.A.   </span></li>
+                            </ol>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>DECIMA TERCERA.- SOMETIMIENTO A LA LEY:</strong> El TRABAJADOR queda sometido a las demás prohibiciones y obligaciones que establece el Reglamento Interno y el Código del Trabajo, lo no estipulado en el presente contrato se regirá por las disposiciones legales pertinentes en el citado cuerpo legal y demás leyes de Previsión Social.   </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000">Si durante la ejecución del presente Contrato o bien al terminar el mismo, el Patrono encontrare actuaciones o hechos que traigan como consecuencia responsabilidades laborales, penales y/o civiles ocasionados por El Trabajador (a) intermediando dolo o culpa y que causen daños y perjuicios tanto a las personas como a los bienes de la Empresa; El Patrono queda autorizado para interponer y ejercer las acciones legales correspondientes, extra o judiciales. </span></p>
+                            <p style="margin-left:10px; text-align:justify; font-size:13"><span style="color:#000000"><strong>DECIMA CUARTA.- ACEPTACION Y FIRMAS:</strong> Ambas partes ratifican y aceptan el contenido de lo aquí convenido, en fe de lo cual firmamos para constancia el presente CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO INDEFINIDO, en la Ciudad de Danlí, Departamento de El Paraíso a los 10 días del mes de Enero del año 2021.  </span></p>
+                        </body>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- Añade la opcion para imprimir el contrato -->
+    <act_window id="action_print_contract_id"   
+        name="Set Done"
+        src_model="hr.employee"
+        res_model="doff.contrato"
+        view_type="form" view_mode="form"
+        key2="client_action_multi" target="new"
+    />
+
+    <report
+        id="doff_contract_report"
+        string="Generar contrato"
+        model="hr.employee"
+        report_type="qweb-pdf"
+        name="diadema_contrato_empleados.doff_contrato_report_id"
+        file="diadema_contrato_empleados.doff_contrato_report_id"/>
+</odoo>

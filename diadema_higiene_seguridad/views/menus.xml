@@ -1,22 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+	<!-- Creo la ubicacion -->
+	<!-- <record id="location_almacen_a" model="stock.location">
+        <field name="name">Almacen A</field>
+        <field name="location_id" ref="stock.stock_location_locations_virtual"/>
+        <field name="usage">inventory</field>
+        <field name="company_id"></field>
+	</record>
+
+
+	<record id="location_almacen_B" model="stock.location">
+        <field name="name">Almacen B</field>
+        <field name="location_id" ref="stock.stock_location_locations_virtual"/>
+        <field name="usage">inventory</field>
+        <field name="company_id"></field>
+	</record> -->
+
+	<!-- Agrego la opcion print al reporte. -->
     <report
         id="report_higiene_seguridad_id"
         string="Reporte de movimiento de inventario"
         model="doff.higiene.seguridad"
         report_type="qweb-pdf"
         name="diadema_higiene_seguridad.report_higiene_seguridad_doff"
-        file="diadema_higiene_seguridad.report_higiene_seguridad_doff"/>
+        file="diadema_higiene_seguridad.report_higiene_seguridad_doff"
+	/>
 
-	<menuitem id="raw_higiene_seguridad" 
+	<menuitem 
+		id="raw_higiene_seguridad" 
 		name="Inventario" 
 		sequence="1" 
-		web_icon=""/>
+		web_icon=""
+	/>
 
-			<!--Consumo de impresoras-->
-			<menuitem id="bale_menu_higiene_seguridad_hs" 
-				name="Higiene y seguridad" 
-				sequence="1" 
-				parent="raw_higiene_seguridad"
-				action="bale_income_menu_action"/>
+	<menuitem 
+		id="bale_menu_higiene_seguridad_hs" 
+		name="Higiene y seguridad" 
+		sequence="1" 
+		parent="raw_higiene_seguridad"
+		action="bale_income_menu_action"
+	/>
+
+	<menuitem 
+		id="bale_menu_higiene_seguridad_cfg" 
+		name="Configuracion" 
+		sequence="2" 
+		parent="raw_higiene_seguridad"
+		action="bale_income_menu_action_cfg"
+	/>
 </odoo>

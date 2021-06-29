@@ -28,6 +28,58 @@ class higieneSeguridad(models.Model):
         for rec in self:
             rec.write({'state': 'Aprobado'})
 
+    @api.multi
+    def btn_stockpicking(self):
+        if self.type_of_operation == 'Entrada':
+            for rec in self:
+                vals_stockmove = {
+                    "stock_picking":stock_picking,
+                    "storage_destino":rec.storage_destino,
+                    "location_destino":rec.location_destino,
+                    "department":rec.department,
+                    "suplier":rec.suplier
+                }   
+                vals_stockmove_items = {
+                    "product_higiene_seguridad":rec.product_higiene_seguridad.id,
+                    "qty_available":rec.qty_available,
+                    "qty":rec.qty,
+                    "doff_higiene_seguridad_id": self.self.id
+                }   
+                self.env['stock.picking'].create(values_for_create)
+        if self.type_of_operation == 'Interno':
+            for rec in self:
+                vals_stockmove = {
+                    "stock_picking":stock_picking,
+                    "storage":rec.storage,
+                    "location":rec.location,
+                    "storage_destino":rec.storage_destino,
+                    "location_destino":rec.location_destino,
+                    "department":rec.department,
+                    "suplier":rec.suplier
+                }   
+                vals_stockmove_items = {
+                    "product_higiene_seguridad":rec.product_higiene_seguridad,
+                    "qty_available":rec.qty_available,
+                    "qty":rec.qty,
+                    "doff_higiene_seguridad_id": self.self.id
+                }   
+
+        if self.type_of_operation == 'Salida':
+            for rec in self:
+                vals_stockmove = {
+                    "stock_picking":stock_picking,
+                    "storage":rec.storage,
+                    "location":rec.location,
+                    "department":rec.department,
+                    "suplier":rec.suplier,
+                }   
+                vals_stockmove_items = {
+                    "product_higiene_seguridad":rec.product_higiene_seguridad,
+                    "qty_available":rec.qty_available,
+                    "qty":rec.qty,
+                    "doff_higiene_seguridad_id": self.self.id
+                }   
+
     #@api.onchange('type_of_operation')
     #def onchange_type_of_operation(self):
     #    for rec in self:
@@ -58,11 +110,16 @@ class higieneSeguridad(models.Model):
     registration_date = fields.Date("Fecha de registro", default=fields.Datetime.now)
     responsable_id = fields.Many2one("res.users","Responsable", default=lambda self: self.env.uid)
     suplier = fields.Many2one("res.partner", "Proveedor", default=lambda self: self.env.uid)
+    department = fields.Many2one("hr.department", "Departamento")
     stock_picking = fields.Many2one("stock.picking","Movimiento", default=lambda self: self.env.uid)
-    storage = fields.Many2one("stock.warehouse", string="Almacen origen", default=lambda rec: rec.env.uid)
+    storage = fields.Many2one("stock.warehouse", string="Almacen origen", default=lambda self: self.env.uid)
     location = fields.Many2one("stock.location", string="Ubicación origen")
-    storage_destino = fields.Many2one("stock.warehouse", string="Almacen destino", default=lambda rec: rec.env.uid)
+    storage_destino = fields.Many2one("stock.warehouse", string="Almacen destino", default=lambda self: self.env.uid)
     location_destino = fields.Many2one("stock.location", string="Ubicación destino")
+    # storage = fields.Many2one("stock.warehouse", string="Almacen origen", default=lambda rec: rec.env.uid)
+    # location = fields.Many2one("stock.location", string="Ubicación origen")
+    # storage_destino = fields.Many2one("stock.warehouse", string="Almacen destino", default=lambda rec: rec.env.uid)
+    # location_destino = fields.Many2one("stock.location", string="Ubicación destino")
     type_of_operation = fields.Selection([('Entrada','Entrada'), 
                                           ('Interno','Interno'), 
                                           ('Salida','Salida')], 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<menuitem 
+		id="raw_meeting_schedule_menu_id" 
+		name="Calendario de reuniones" 
+		sequence="1" 
+		web_icon="meeting_schedule,static/description/icon.png"
+	/>
+			<menuitem 
+				id="bale_menu_category" 
+				name="calendario" 
+				sequence="1" 
+				parent="raw_meeting_schedule_menu_id"		
+				action="bale_income_menu_action_id"
+			/>
+</odoo>

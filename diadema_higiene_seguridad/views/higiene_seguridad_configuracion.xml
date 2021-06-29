@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="doff_higiene_seguridad_cfg_form_view" model="ir.ui.view">
+        <field name="name">doff_higiene_seguridad_cfg_form_view</field>
+        <field name="model">doff.configuration</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>            
+                            <label for="default_input_a" string="Entrada"/>
+                            <field 
+                                name="default_input_a"
+                                options="{'no_quick_create': True, 'no_create_edit': True}" 
+                            />  
+                            <field 
+                                name="default_input_ab"
+                                options="{'no_quick_create': True, 'no_create_edit': True}" 
+                            />  
+                        </group>
+                        <group>
+                            <label for="default_internal_a" string="Interno"/>
+                            <field 
+                                name="default_internal_a"
+                                options="{'no_quick_create': True, 'no_create_edit': True}" 
+                            />  
+                            <field 
+                                name="default_internal_ab"
+                                options="{'no_quick_create': True, 'no_create_edit': True}" 
+                            />  
+                        </group>
+                        <group>
+                            <label for="default_output_a" string="Salidas"/>
+                            <field 
+                                name="default_output_a"
+                                options="{'no_quick_create': True, 'no_create_edit': True}" 
+                            />  
+                            <field 
+                                name="default_output_ab"
+                                options="{'no_quick_create': True, 'no_create_edit': True}" 
+                            />  
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>    
+
+    <!-- <record id="doff_printer_tree_view" model="ir.ui.view">
+		<field name="name">Higiene y seguridad</field>
+		<field name="model">doff.configuracion</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="registration_date"/>
+                <field name="responsable_id"/>
+			</tree>
+		</field>		
+	</record> -->
+
+    <record id="bale_income_menu_action_cfg" model="ir.actions.act_window">
+		<field name="name">Configuracion</field>
+		<field name="res_model">doff.configuration</field>
+		<field name="view_mode">form</field>
+	</record>
+</odoo>

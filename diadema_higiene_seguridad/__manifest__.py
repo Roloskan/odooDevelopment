@@ -15,6 +15,7 @@
     'depends' : ['base','product','stock'],
     'data': [
         'report/report_higiene_seguridad.xml',
+        'views/higiene_seguridad_configuracion.xml',
         'views/higiene_seguridad.xml',
         'views/menus.xml',
     ],

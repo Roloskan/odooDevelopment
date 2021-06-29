@@ -30,6 +30,12 @@
                         state="Aprobado"
                         attrs="{'invisible': [('state','in',['Aprobado','Borrador'])]}"
                     />
+                    <button 
+                        name="btn_stockpicking" 
+                        class="oe_highlight" 
+                        type="object" 
+                        string="Crear Stock Picking" 
+                    />
                     <field 
                         name="state" 
                         widget="statusbar" 
@@ -84,7 +90,14 @@
                                 required="1"
                                 options="{'no_quick_create': True, 'no_create_edit': True}"
                                 attrs="{'readonly': [('state','!=','Borrador')]}"
-                            />
+                            />       
+                            <field 
+                                name="department"
+                                required="1"
+                                options="{'no_quick_create': True, 'no_create_edit': True}"
+                                attrs="{'invisible':[('type_of_operation','!=','Salida')],
+                                        'readonly': [('state','!=','Borrador')]}"
+                            />                            
                             <field 
                                 name="storage_destino"
                                 required="1" 
