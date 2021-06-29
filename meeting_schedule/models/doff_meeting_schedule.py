@@ -9,8 +9,8 @@ class meetingSchedule(models.Model):
 
     start_date = fields.Date("Fecha de inicio", default = fields.Datetime.now)
     location = fields.Char("Lugar")
-    start_hour = fields.Float("Hora de inicio")
-    end_hour = fields.Float("Hora final")
+    start_hour = fields.Float("Hora de inicio", required=True)
+    end_hour = fields.Float("Hora final", required=True)
     responsable_id = fields.Many2one('res.users','Responsable', default=lambda self: self.env.uid)
     registration_date = fields.Date("Fecha de registro", default = fields.Datetime.now)
 

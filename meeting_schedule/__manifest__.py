@@ -2,12 +2,14 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
     'name' : 'Calendario de Reuniones',
-    'version' : '1.0',
+    'version' : '11.0',
     'summary': 'Programacion de reuniones.',
     'description': """
     Una peque descripcion
     """,    
-    'author': "ICT",
+    'author': 'ICT',
+    'company': 'ICT',
+    'maintainer': 'ICT',
     'category': '',
     'website': '',
     'images' : ['static/description/icon.png'],
